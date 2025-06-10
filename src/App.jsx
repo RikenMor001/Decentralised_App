@@ -1,37 +1,24 @@
-import React, { FC, useMemo } from 'react';
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
-import {
-    WalletModalProvider,
-    WalletDisconnectButton,
-    WalletMultiButton
-} from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
-
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import '@solana/wallet-adapter-react-ui/styles.css';
+import { Airdrop } from './Airdrop';
+import { useMemo } from 'react';
+import {
+    PhantomWalletAdapter,
+} from '@solana/wallet-adapter-wallets';
 
-// <ConnectionProvier endpoint={endpoint}>    
-  {/* <WalletPorvider wallets = {wallets} autoConnect>
-      <WalletModelProvider>
-      </WalletModelProvider>
-  </WalletPorvider> */}
-// </ConnectionProvier>
+export default function App() {
+    const endpoint = useMemo(() => 'https://api.mainnet-beta.solana.com', []);
 
+    const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
 
-function App() {
-  // Endpoint over here is the RPC url that will be devnet
-  return <ConnectionProvider endpoint={endpoint}>
-            <WalletProvider wallets={{}} autoConnect>
+    return (
+        <ConnectionProvider endpoint={endpoint}>
+            <WalletProvider wallets={wallets} autoConnect>
                 <WalletModalProvider>
-                    <WalletMultiButton />
-                    <WalletDisconnectButton />
-                    <div>
-                      Decentralised App
-                    </div>
+                    <Airdrop />
                 </WalletModalProvider>
             </WalletProvider>
         </ConnectionProvider>
+    );
 }
-
-export default App
