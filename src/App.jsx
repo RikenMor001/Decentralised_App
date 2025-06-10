@@ -8,7 +8,7 @@ import {
 } from '@solana/wallet-adapter-wallets';
 
 export default function App() {
-    const endpoint = useMemo(() => 'https://api.mainnet-beta.solana.com', []);
+    const endpoint = useMemo(() => 'https://solana-devnet.g.alchemy.com/v2/i9WpXCP_SX2QikFfKnXFmZT--rjRGo65', []);
 
     const wallets = useMemo(() => [new PhantomWalletAdapter()], []);
 
