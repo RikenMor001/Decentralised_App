@@ -1,10 +1,10 @@
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
+import {  WalletDisconnectButton, WalletModalProvider, WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import { Airdrop } from './Airdrop';
 import { useMemo } from 'react';
 import {
-    PhantomWalletAdapter,
+    PhantomWalletAdapter,  
 } from '@solana/wallet-adapter-wallets';
 
 export default function App() {
@@ -16,6 +16,8 @@ export default function App() {
         <ConnectionProvider endpoint={endpoint}>
             <WalletProvider wallets={wallets} autoConnect>
                 <WalletModalProvider>
+                  <WalletMultiButton></WalletMultiButton>
+                  <WalletDisconnectButton></WalletDisconnectButton>
                     <Airdrop />
                 </WalletModalProvider>
             </WalletProvider>
